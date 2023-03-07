@@ -21,14 +21,14 @@ const create = catchError(async (req, res) => {
 const getOne = catchError(async (req, res) => {
     const { id } = req.params;
     const user = await User.findByPk(id);
-    if (!user) return res.status(404).json({ message: "Song not found" });
+    if (!user) return res.status(404).json({ message: "User not found" });
     return res.json(user);
 });
 //delete
 const remove = catchError(async (req, res) => {
     const { id } = req.params;
     const user = await User.destroy({ where: { id } });
-    if (user === 0) return res.status(404).json({ message: "Song not found" });
+    if (user === 0) return res.status(404).json({ message: "User not found" });
     return res.sendStatus(204);
 });
 // update
@@ -46,7 +46,7 @@ const update = catchError(async (req, res) => {
         { where: { id }, returning: true }
     );
     if (user[0] === 0)
-        return res.status(404).json({ message: "Song not found" });
+        return res.status(404).json({ message: "User not found" });
     return res.json(user[1][0]);
 });
 
